@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -66,11 +66,11 @@
     </style>
     <script>
         function redirectToPage(imageId) {
-            // Aquí puedes agregar la URL de destino según la imagen clickeada
+            // Redirige según el ID de la imagen clickeada
             if (imageId === 'image1') {
-               window.location.href ='https://mcsanpablo.github.io/canciones/'; // Cambia 'pagina1.html' a la URL que quieras
-            } else if (imageId === 'image2'){
-               window.location.href ='https://mcsanpablo.github.io/listas/'; // Cambia 'pagina2.html' a la URL que quieras
+                window.location.href = 'https://mcsanpablo.github.io/canciones/';
+            } else if (imageId === 'image2') {
+                window.location.href = 'https://mcsanpablo.github.io/listas/';
             }
         }
     </script>
@@ -78,10 +78,10 @@
 <body>
     <div class="image-container">
         <!-- Imagen 1 -->
-        <img src="imagen/c1.png" alt="Imagen 1" onclick="redirectToPage('image1')" id="image1">
+        <img src="imagen/c1.png" alt="Ir a Canciones" onclick="redirectToPage('image1')" id="image1">
 
         <!-- Imagen 2 -->
-        <img src="imagen/l1.png" alt="Imagen 2" onclick="redirectToPage('image2')" id="image2">
+        <img src="imagen/l1.png" alt="Ir a Listas" onclick="redirectToPage('image2')" id="image2">
     </div>
 </body>
 </html>
