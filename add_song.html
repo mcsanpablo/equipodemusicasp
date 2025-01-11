@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Canción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, select, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function submitSong() {
+            const category = document.getElementById('category').value;
+            const name = document.getElementById('name').value;
+            const details = document.getElementById('details').value;
+
+            if (name && details) {
+                const data = new URLSearchParams();
+                data.append('category', category);
+                data.append('name', name);
+                data.append('details', details);
+
+                // Enviar los datos al backend
+                fetch('save_songs.php', {
+                    method: 'POST',
+                    body: data,
+                })
+                    .then(response => response.text())
+                    .then(result => {
+                        alert(result); // Mostrar mensaje del backend
+                        window.close(); // Cerrar la ventana después de guardar
+                    })
+                    .catch(error => {
+                        console.error('Error al guardar la canción:', error);
+                        alert('Hubo un error al guardar la canción. Intenta nuevamente.');
+                    });
+            } else {
+                alert('Por favor, completa todos los campos.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Agregar Canción</h1>
+
+    <form onsubmit="event.preventDefault(); submitSong();">
+        <label for="category">Categoría:</label>
+        <select id="category">
+            <option value="Alabanzas">Alabanzas</option>
+            <option value="Adoraciones">Adoraciones</option>
+            <option value="Ofrendas">Ofrendas</option>
+        </select>
+
+        <label for="name">Nombre de la Canción:</label>
+        <input type="text" id="name" required>
+
+        <label for="details">Detalles de la Canción (letra y acordes):</label>
+        <textarea id="details" rows="10" required></textarea>
+
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>
